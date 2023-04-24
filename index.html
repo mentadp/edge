@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Deteksi Tepi</title>
+
+    <style>
+        section {
+            min-height: 420px;
+        }
+
+        #myProgress {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        #myBar {
+            width: 10%;
+            height: 20px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+    </style>
+
+    <script type='text/javascript'>
+        function preview_image(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output_image');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row pt-4">
+            <div class="col text-center">
+                <h2>EDGE DETECTION</h2>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <input type="file" id="image-loader" name="imageLoader" style="display:none;"
+                    onchange="preview_image(event)" />
+                <a id="download-link" style="display:none;"></a>
+                <button class="btn btn-primary" id="upload-image">
+                    <i class="fa fa-upload"></i>
+                    Upload Image
+                </button>
+                <button class="btn btn-warning" id="reset">
+                    <i class="fa fa-refresh"></i>
+                    Reset
+                </button>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <p>Pilih Operator :</p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="operator" id="sobel" checked>
+                    <label class="form-check-label" for="inlineRadio1">Sobel</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="operator" id="roberts">
+                    <label class="form-check-label" for="inlineRadio2">Roberts</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="operator" id="prewitt">
+                    <label class="form-check-label" for="inlineRadio2">Prewitt</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="operator" id="laplace">
+                    <label class="form-check-label" for="inlineRadio2">Laplace</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="operator" id="freichan">
+                    <label class="form-check-label" for="inlineRadio2">Freichan</label>
+                </div>
+                <button class="btn btn-success" id="calculate-gradiant">
+                    <i class="fa fa-spinner"></i>
+                    Deteksi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section class="bg-light">
+        <div class="container">
+            <div class="row pt-4 mb-4">
+                <div class="col-md-6">
+                    <h4 class="mb-4">Citra Awal</h4>
+                    <img id="output_image" src="images/demo.jpeg" style="max-width: 100%;" />
+                </div>
+                <div class="col-md-6">
+                    <h4 class="mb-4">Hasil Deteksi</h4>
+                    <canvas id="image-canvas" style="max-width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="#">GPC</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="js/edge_detection.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</body>
+
+</html>
